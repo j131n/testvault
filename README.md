@@ -67,6 +67,47 @@ npm run build
 NODE_ENV=production node dist/index.cjs
 ```
 
+## API Endpoints
+
+### Test Runs
+- `GET /api/runs` — List all test runs (supports query filters)
+- `GET /api/runs/:id` — Get run details
+- `POST /api/runs` — Create a new test run
+- `GET /api/runs/:id/results` — Get test results for a run
+
+### Results
+- `POST /api/results/bulk` — Bulk import test results
+
+### Analytics
+- `GET /api/analytics/dashboard` — Dashboard summary stats
+- `GET /api/analytics/pass-rate-trend` — Pass rate over time
+- `GET /api/analytics/duration-trend` — Duration trends
+- `GET /api/analytics/failure-hotspots` — Most failing tests
+- `GET /api/analytics/platform-comparison` — Cross-platform comparison
+- `GET /api/analytics/flaky-tests` — Flaky test detection
+- `GET /api/analytics/last-failed` — Last failed tracking by git order
+
+### AI
+- `POST /api/ai/query` — Natural language query endpoint
+
+## Project Structure
+
+```
+testvault/
+├── client/
+│   └── src/
+│       ├── pages/           # Dashboard, Test Runs, Run Detail, Trends, Last Failed, AI Assistant
+│       ├── components/      # Shared UI components (shadcn/ui)
+│       ├── hooks/           # Custom React hooks
+│       └── lib/             # Query client, utilities
+├── server/
+│   ├── routes.ts            # API route definitions
+│   ├── storage.ts           # Data storage layer with seed data
+│   └── index.ts             # Express server entry point
+└── shared/
+    └── schema.ts            # Drizzle ORM schema (platforms, testRuns, testResults, flakyTests)
+```
+
 ## License
 
 MIT
